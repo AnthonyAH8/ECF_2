@@ -1,79 +1,66 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# ECF2
 
-# Getting Started
+L'objectif de l'ECF est de créer une application Front-End en utilisant une API REST ( Pokémon ), afin de récupérer les données de l'API avec des requêtes **AXIOS**.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+L'application mobile se divisait en 3 écrans (screens):
 
-## Step 1: Start the Metro Server
+- Le premier écran correspond à l'affichage de la liste des pokémon avec leur image, leur numéro de pokédex ainsi que leurs noms. L'utilisateur peut alors cliquer sur un second écran qui permet d'accéder à la description du pokémon et pourra rechercher un pokémon par son nom ou une liste de pokémon selon le type.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Le deuxième écran correspond à l'affichage du pokémon. Dans ce second écran sera affichée la description du pokémon avec les différents types du pokémon, sa description, ses caractéristiques de bases (PV, attaque, défense, attaque et défense spéciales, vitesse), ses évolutions s'il y en a, ainsi que la possibilité pour l'utilisateur de mettre un pokémon dans son pokédex qui sera en troisième écran aveec le bouton ***"ajouter au pokédex"***.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Le troisième écran sera consacré au pokédex de l'utilisateur. Seront stockés les pokémons qu'il aura mis dans sa liste. Il pourra enlever un pokémon de son pokédex avec un bouton ***"Supprimer de sa liste"***.
 
-```bash
-# using npm
-npm start
+## API Rest
 
-# OR using Yarn
-yarn start
+L'API utilisée pour ce projet est : [API Pokémon](https://tyradex.vercel.app/) avec sa documentation : [Doc API](https://tyradex.vercel.app/docs).
+
+## Technologies
+
+- React Native
+- React Navigation
+- Redux
+- GitHub
+- FIGMA 
+
+## Initiation projet
+
+Tout d'abord, il faut initialiser un nouveau projet:
+- **npx react-native@latest init**
+
+Ensuite, il faut installer les différentes dépendances nécessaires pour le projet:
+
+```java
+npm install @react-navigation/native
+npm install react-native-screensreact-native-safe-area-context
+npm i @react-navigation/native-stack
+npm install axios
 ```
 
-## Step 2: Start your Application
+Avant de lancer l'application, il faut définir les différents élèments afin de pouvoir naviguer sur les différents écrans de l'application mobile. Cela se passe dans le fichier **App.jsx**.  
+Une constante devra être crée afin de mettre en place la navigation: 
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```js
+   const Stack = createNativeStackNavigator()
 ```
 
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```javascript
+   <NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen/>
+            <Stack.Screen/>
+            <Stack.Screen/>
+        </Stack.Navigator>
+    </NavigationContainer>
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Dans ce projet est utilisé le navigation **Stack**, le Stack Navigator permet à une application de passer d'un écran à l'autre, chaque nouvel écran étant placé au sommet d'une pile. 
+En **Stack**, la navigation se fait en haut de l'écran, au contraire du **Bottom Tab** où la navigation se fait en bas.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+## Lancement du projet
 
-Now that you have successfully run the app, let's modify it.
+```javascript
+npx react-nativerun-android 
+```                                                                              
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
