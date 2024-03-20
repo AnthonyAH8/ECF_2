@@ -60,7 +60,7 @@ En **Stack**, la navigation se fait en haut de l'écran, au contraire du **Botto
 ## Lancement du projet
 
 ```javascript
-npx react-nativerun-android 
+npx react-native run-android 
 ```                                                                              
 
 
