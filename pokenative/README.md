@@ -67,8 +67,6 @@ npx react-native run-android
 ## Aperçu maquette
 
 ![alt text](<Pokémon All Pages.png>)
-![alt text](PokémonHome.png)
-![alt text](PokémonDetails.png)
+![alt text](<PokémonHome.png>)
+![alt text](<PokémonDetails.png>)
 ![alt text](<PokémonCollection.png>)
-
-Image : ![Pokémon All Pages.png]
