@@ -72,8 +72,6 @@ npx react-native run-android
 
 ## Captures écran 
 
-<img src="./Screenshot_1711037024.png" alt="Alt text" width="300" height="600">
-<img src="./Screenshot_1711037104.png" alt="Alt text" width="300" height="600">
-<img src="./Screenshot_1711036118.png" alt="Alt text" width="300" height="600">
-
-
+<img src="./pokenative/img/Screenshot_1711037024.png" alt="pokemonHome" width="300" height="600">
+<img src="./pokenative/img/Screenshot_1711037104.png" alt="pokemonDetail" width="300" height="600">
+<img src="./pokenative/img/Screenshot_1711036118.png" alt="NightMode" width="300" height="600">
