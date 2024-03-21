@@ -62,3 +62,18 @@ En **Stack**, la navigation se fait en haut de l'écran, au contraire du **Botto
 ```javascript
 npx react-native run-android 
 ```                                                              
+
+## Aperçu maquette (FIGMA)
+
+![allPages](<Pokémon All Pages.png>)
+![pokemonHome](PokémonHome.png)
+![pokemonDetails](PokémonDetails.png)
+![pokemonCollection](PokémonCollection.png)
+
+## Captures écran 
+
+![pokemonList](Screenshot_1711037024.png)
+![pokemonDetail](Screenshot_1711037104.png)
+
+Mode nuit: 
+![Mode nuit](Screenshot_1711036118.png) 
