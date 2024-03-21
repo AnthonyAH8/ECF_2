@@ -72,8 +72,8 @@ npx react-native run-android
 
 ## Captures écran 
 
-![pokemonList](Screenshot_1711037024.png)
-![pokemonDetail](Screenshot_1711037104.png)
+<img src="./Screenshot_1711037024.png" alt="Alt text" width="300" height="600">
+<img src="./Screenshot_1711037104.png" alt="Alt text" width="300" height="600">
+<img src="./Screenshot_1711036118.png" alt="Alt text" width="300" height="600">
 
-Mode nuit: 
-![Mode nuit](Screenshot_1711036118.png) 
+
