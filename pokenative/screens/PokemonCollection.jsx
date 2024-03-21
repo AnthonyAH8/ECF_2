@@ -1,8 +1,9 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 export default function PokemonCollection({ navigation, route }) {
+
     const [pokemonCollection, setPokemonCollection] = useState([]);
 
     useEffect(() => {
@@ -18,6 +19,7 @@ export default function PokemonCollection({ navigation, route }) {
         };
         loadCollection();
     }, []);
+
 
     return (
         <View style={styles.container}>

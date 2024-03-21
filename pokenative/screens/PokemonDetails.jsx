@@ -13,13 +13,14 @@ export default function PokemonDetails({ navigation, route }) {
         try {
             await AsyncStorage.setItem('pokemonAdd', JSON.stringify(pokemon));
             setPokemonAdd(pokemon);
+            console.log('Pokémon ajouté');
         } catch (error) {
             console.log(error);
         }
     }
     
     useEffect(() => {
-        const loadPokemonAdd = async () => {
+        const handlePokemonAdd = async () => {
             try {
                 const pokemonStatus = await AsyncStorage.getItem('pokemonAdd');
                 if (pokemonStatus !== null) {
@@ -29,7 +30,7 @@ export default function PokemonDetails({ navigation, route }) {
                 console.log(error);
             }
         };
-        loadPokemonAdd();
+        handlePokemonAdd();
     }, []);
 
     useLayoutEffect(() => {
