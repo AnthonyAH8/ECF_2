@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
+import { AsyncStorage } from 'react-native';
 
 export default function PokemonDetails({ navigation, route }) {
 
@@ -7,8 +8,14 @@ export default function PokemonDetails({ navigation, route }) {
 
     const [capturedPokemon, setCapturedPokemon] = useState([]);
 
-    const addPokemon = () => {
-        setCapturedPokemon(prev => [...prev, pokemon]);
+    const addPokemon = async () => {
+        try {
+            const capturedPokemonString = JSON.stringify(capturedPokemon);
+            await AsyncStorage.setItem(pokemon, capturedPokemonString);
+            setCapturedPokemon(prev => [...prev, pokemon]);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useLayoutEffect(() => {
@@ -19,7 +26,7 @@ export default function PokemonDetails({ navigation, route }) {
         <View style={styles.container}>
             <Image source={{ uri: pokemon.sprites.regular }}
                 style={styles.image} />
-            <TouchableHighlight onPress={() => navigation.navigate('PokemonCollection', { addPokemon })}>
+            <TouchableHighlight onPress={() => navigation.navigate('PokemonCollection', { addPokemonKey: addPokemon })}>
                 <View style={styles.add}>
                 <Text style={{ color: 'white'}}>Ajouter à mon Pokédex</Text>
                 </View>
