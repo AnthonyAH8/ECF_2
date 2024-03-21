@@ -1,10 +1,11 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View, useColorScheme } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TextInput, TouchableHighlight, View, Appearance, Switch} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export default function PokemonHome({ navigation }) {
 
-    // const colorScheme = useColorScheme('')
+    const [theme, setTheme] = useState(Appearance.getColorScheme());
+
     const [pokemonList, setPokemonList] = useState([])
     const [pokemonSearch, setPokemonSearch] = useState('')
     const [filterType, setFilterType] = useState(null);
@@ -20,6 +21,17 @@ export default function PokemonHome({ navigation }) {
     });
 
     useEffect(() => {
+        const changeMode = Appearance.addChangeListener(({ colorScheme }) => {
+          setTheme(colorScheme);
+        });
+        return () => changeMode.remove();
+      }, []);
+    
+      const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+      };
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://tyradex.vercel.app/api/v1/gen/1');
@@ -28,13 +40,17 @@ export default function PokemonHome({ navigation }) {
                 console.log(error);
             }
         };
-
         fetchData();
     }, [])
 
     return (
-        <View style={styles.container}>
-            {/* <Text>useColorScheme(): {colorScheme}</Text> */}
+        <View style={[styles.container, theme === 'dark' && styles.darkContainer]}>
+            <Switch
+            value={theme === 'dark'}
+            onValueChange={toggleTheme}
+            trackColor={{true: '#FFCC00BB', false: '#3C5AA6'}}
+            style={styles.switch}
+            />
             <View style={styles.typesList}>
                 <TouchableHighlight onPress={() => filter('Feu')}>
                     <Text style={{ backgroundColor: '#EE8130', borderRadius: 5, color: 'white', padding: 5 }}>Feu</Text>
@@ -92,17 +108,17 @@ export default function PokemonHome({ navigation }) {
                 </TouchableHighlight>
             </View>
             <TouchableHighlight onPress={() => filter(null)}>
-                    <Text style={{ backgroundColor: '#D3D3D322', borderRadius: 5, color: 'black', padding: 5, marginVertical: 20 }}>Retour à la liste</Text>
+                    <Text style={{ backgroundColor: '#D3D3D3', borderRadius: 5, color: 'black', padding: 5, marginVertical: 20 }}>Retour à la liste</Text>
                 </TouchableHighlight>
             <Image
                 source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/200px-International_Pok%C3%A9mon_logo.svg.png' }}
                 style={{ width: 300, height: 110 }}
             />
-            <Text style={styles.title}>Liste des pokemons</Text>
+            <Text style={[styles.title, theme === 'dark' && styles.darkTitle]}>Liste des pokemons</Text>
             <TextInput
-                style={styles.input}
+                style={[styles.input, theme === 'dark' && styles.darkInput]}
                 placeholder='Entrer un nom de pokémon'
-                placeholderTextColor='#3C5AA6'
+                placeholderTextColor='grey'
                 value={pokemonSearch}
                 onChangeText={(e) => setPokemonSearch(e)}
             />
@@ -114,13 +130,13 @@ export default function PokemonHome({ navigation }) {
                 renderItem={(itemData) => {
                     return (
                         <TouchableHighlight onPress={() => navigation.navigate('PokemonDetails', { pokemon: itemData.item })}>
-                            <View style={styles.card}>
+                            <View style={[styles.card, theme === 'dark' && styles.darkCard]}>
                                 <Image
                                     source={{ uri: itemData.item.sprites.regular }}
                                     style={styles.image}
                                 />
-                                <Text style={styles.name}>{itemData.item.name.fr}</Text>
-                                <Text style={styles.name}>{itemData.item.pokedex_id}</Text>
+                                <Text style={[styles.name, theme === 'dark' && styles.darkName]}>{itemData.item.name.fr}</Text>
+                                <Text style={[styles.name, theme === 'dark' && styles.darkName]}>{itemData.item.pokedex_id}</Text>
                             </View>
                         </TouchableHighlight>
                     )
@@ -140,6 +156,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#D3D3D311',
     },
+
     card: {
         textAlign: 'center',
         display: 'flex',
@@ -182,5 +199,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 8
     },
+
+    // DarkMode //
+
+    darkContainer: {
+        backgroundColor: '#000000EE',
+      },
+
+      darkTitle: {
+        color: '#FFCC00BB',
+      },
+      darkInput:{
+        borderColor: '#FFCC00BB',
+        color: 'white',
+      },
+      darkName:{
+        color: '#FFCC00BB',
+      },
+      darkCard: {
+        borderColor: '#FFCC00BB'
+      }
 })
 

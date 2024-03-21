@@ -34,6 +34,7 @@ npm install @react-navigation/native
 npm install react-native-screensreact-native-safe-area-context
 npm i @react-navigation/native-stack
 npm install axios
+npm i @react-native-async-storage/async-storage
 ```
 
 Avant de lancer l'application, il faut définir les différents élèments afin de pouvoir naviguer sur les différents écrans de l'application mobile. Cela se passe dans le fichier **App.jsx**.  
@@ -63,4 +64,4 @@ En **Stack**, la navigation se fait en haut de l'écran, au contraire du **Botto
 npx react-native run-android 
 ```                                                                              
 
-
+(![alt text](<Pokémon All Pages.png>))

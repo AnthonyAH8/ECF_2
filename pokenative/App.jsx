@@ -6,6 +6,7 @@ import PokemonHome from './screens/PokemonHome'
 import PokemonDetails from './screens/PokemonDetails'
 import PokemonCollection from './screens/PokemonCollection'
 
+
 const Stack = createNativeStackNavigator()
 
 
